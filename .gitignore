@@ -1,0 +1,29 @@
+# Node and package managers
+node_modules/
+.pnpm-store/
+.npm/
+
+# Build output
+dist/
+build/
+.next/
+coverage/
+
+# Local environment
+.env
+.env.local
+.env.*.local
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# App data
+tmp/
+uploads/
+storage/
+
+# Python notebooks
+.ipynb_checkpoints/

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Study Notes Assistant</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">AI Study Notes Assistant | Demo Flow</p>
+        <h1>Turn course PDFs into grounded study help.</h1>
+        <p class="hero-copy">
+          Build one course workspace at a time, process supported PDFs, generate
+          structured notes, and ask grounded questions with visible source support.
+        </p>
+        <div class="hero-ribbon">
+          <span>1. Create a course</span>
+          <span>2. Upload supported PDFs</span>
+          <span>3. Review notes and grounded answers</span>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel panel-form" aria-labelledby="create-course-heading">
+          <div class="panel-header">
+            <p class="kicker">Start here</p>
+            <h2 id="create-course-heading">Create a course workspace</h2>
+          </div>
+
+          <form id="course-form" class="course-form">
+            <label class="field">
+              <span>Course name</span>
+              <input
+                id="course-name"
+                name="name"
+                type="text"
+                placeholder="Cognitive Psychology"
+                maxlength="120"
+                required
+              />
+            </label>
+
+            <label class="field">
+              <span>Course code</span>
+              <input
+                id="course-code"
+                name="code"
+                type="text"
+                placeholder="PSYC 230"
+                maxlength="32"
+              />
+            </label>
+
+            <button type="submit" class="primary-button">Create workspace</button>
+          </form>
+
+          <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="panel panel-courses" aria-labelledby="course-list-heading">
+          <div class="panel-header">
+            <p class="kicker">Workspace list</p>
+            <h2 id="course-list-heading">Your courses</h2>
+          </div>
+
+          <div id="course-list" class="course-list" aria-live="polite"></div>
+        </section>
+
+        <section class="panel panel-active" aria-labelledby="active-course-heading">
+          <div class="panel-header">
+            <p class="kicker">Current focus</p>
+            <h2 id="active-course-heading">Active course</h2>
+          </div>
+
+          <div id="active-course" class="active-course"></div>
+        </section>
+
+        <section class="panel panel-status" aria-labelledby="workflow-heading">
+          <div class="panel-header">
+            <p class="kicker">Workflow status</p>
+            <h2 id="workflow-heading">Study flow readiness</h2>
+          </div>
+
+          <div id="workflow-status" class="document-list" aria-live="polite"></div>
+        </section>
+
+        <section class="panel panel-upload" aria-labelledby="upload-heading">
+          <div class="panel-header">
+            <p class="kicker">Attach materials</p>
+            <h2 id="upload-heading">Upload course PDFs</h2>
+          </div>
+
+          <form id="upload-form" class="course-form">
+            <label class="field">
+              <span>Choose one or more supported PDF files</span>
+              <input
+                id="course-documents"
+                name="documents"
+                type="file"
+                accept=".pdf,application/pdf"
+                multiple
+              />
+            </label>
+
+            <button type="submit" class="primary-button">Upload to active course</button>
+          </form>
+
+          <p id="upload-message" class="form-message" role="status" aria-live="polite"></p>
+
+          <div class="upload-policy">
+            <h3>v1 support boundary</h3>
+            <p>Best results: lecture slides, handouts, and textbook PDFs with selectable text.</p>
+            <p>Out of scope for this demo: scanned PDFs, image-based PDFs, and files dominated by diagrams, charts, or tables.</p>
+          </div>
+
+          <div id="document-list" class="document-list" aria-live="polite"></div>
+        </section>
+
+        <section class="panel panel-knowledge" aria-labelledby="knowledge-heading">
+          <div class="panel-header">
+            <p class="kicker">Course knowledge</p>
+            <h2 id="knowledge-heading">Indexed course content</h2>
+          </div>
+
+          <form id="knowledge-search-form" class="course-form">
+            <label class="field">
+              <span>Search within the active course only</span>
+              <input
+                id="knowledge-query"
+                name="query"
+                type="text"
+                placeholder="Try a topic like retrieval cues or mitochondria"
+              />
+            </label>
+
+            <button type="submit" class="primary-button">Search course knowledge</button>
+          </form>
+
+          <p id="knowledge-message" class="form-message" role="status" aria-live="polite"></p>
+
+          <div id="knowledge-list" class="document-list" aria-live="polite"></div>
+        </section>
+
+        <section class="panel panel-notes" aria-labelledby="notes-heading">
+          <div class="panel-header">
+            <p class="kicker">Study notes</p>
+            <h2 id="notes-heading">Generated notes</h2>
+          </div>
+
+          <form id="notes-form" class="course-form">
+            <button type="submit" class="primary-button">Generate notes for active course</button>
+          </form>
+
+          <p id="notes-message" class="form-message" role="status" aria-live="polite"></p>
+
+          <div id="notes-output" class="document-list" aria-live="polite"></div>
+        </section>
+
+        <section class="panel panel-qa" aria-labelledby="qa-heading">
+          <div class="panel-header">
+            <p class="kicker">Grounded Q&amp;A</p>
+            <h2 id="qa-heading">Ask the active course</h2>
+          </div>
+
+          <form id="qa-form" class="course-form">
+            <label class="field">
+              <span>Ask a question using the active course only</span>
+              <input
+                id="qa-question"
+                name="question"
+                type="text"
+                placeholder="What improves recall according to this course material?"
+              />
+            </label>
+
+            <button type="submit" class="primary-button">Ask grounded question</button>
+          </form>
+
+          <p id="qa-message" class="form-message" role="status" aria-live="polite"></p>
+
+          <div id="qa-output" class="document-list" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
