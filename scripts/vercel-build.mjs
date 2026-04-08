@@ -14,8 +14,8 @@ const copyIntoPublic = (source) => {
   cpSync(join(root, source), join(outputDir, source), { recursive: true });
 };
 
-copyIntoPublic("index.html");
-copyIntoPublic("apps");
+cpSync(join(root, "apps", "web", "index.html"), join(outputDir, "index.html"));
+cpSync(join(root, "apps", "web", "src"), join(outputDir, "src"), { recursive: true });
 copyIntoPublic("packages");
 
 console.log("Vercel build output prepared in ./public");
