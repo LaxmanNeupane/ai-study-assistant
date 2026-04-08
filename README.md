@@ -52,3 +52,41 @@ The repository is intentionally being started small:
 ## Current Status
 
 The repo is in project bootstrap mode. Product direction and issue slicing are defined, and the next implementation step is to build issue `#2` as the first thin vertical slice.
+
+## Final Update- please refer tho the following: 
+1. Overview
+AI Study Notes Assistant is an end-to-end AI application that processes course PDFs into structured study notes and enables grounded Q&A.
+
+2. Features
+- PDF ingestion
+- ETL pipeline (processing course material)
+- Course-scoped knowledge system
+- Study notes generation
+- Grounded Q&A
+- Trust and insufficiency handling
+
+3. Architecture
+PDF → ETL → Structured JSON → Course Knowledge Store → Notes + QA → UI
+
+4. Tech Stack
+- Frontend: HTML, JS
+- Backend: Node.js
+- AI Layer: Grounded Q&A (course-only)
+- Testing: Jest + E2E tests
+- Deployment: Vercel
+
+5. Required Skills Used
+- grill-me → refined scope and user
+- write-a-prd → defined system design
+- prd-to-issues → created development tasks
+- tdd → implemented tests
+- improve-codebase-architecture → refactored structure
+
+6. How to Run
+npm install
+npm test
+npm start
+
+7. Demo Link 
+https://ai-study-assistant-weld-eight.vercel.app
+https://ai-study-assistant-git-main-laxmanneupanes-projects.vercel.app
