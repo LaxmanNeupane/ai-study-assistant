@@ -294,35 +294,35 @@ const renderDocumentList = () => {
   const list = document.createElement("div");
   list.className = "document-cards";
 
-  documents.forEach((document) => {
+  documents.forEach((courseDocument) => {
     const item = document.createElement("article");
     item.className = "document-card";
-    if (document.status === "unsupported") {
+    if (courseDocument.status === "unsupported") {
       item.dataset.status = "unsupported";
-    } else if (document.status === "processed") {
+    } else if (courseDocument.status === "processed") {
       item.dataset.status = "processed";
-    } else if (document.status === "failed") {
+    } else if (courseDocument.status === "failed") {
       item.dataset.status = "failed";
     }
     item.innerHTML = `
       <div class="document-card-top">
-        <p class="document-name">${document.name}</p>
-        <span class="active-pill">${formatStatusLabel(document.status)}</span>
+        <p class="document-name">${courseDocument.name}</p>
+        <span class="active-pill">${formatStatusLabel(courseDocument.status)}</span>
       </div>
-      <p class="document-meta">${formatBytes(document.sizeInBytes)} | ${document.type}</p>
+      <p class="document-meta">${formatBytes(courseDocument.sizeInBytes)} | ${courseDocument.type}</p>
       ${
-        document.unsupportedReason
-          ? `<p class="document-warning">${document.unsupportedReason.message}</p>`
+        courseDocument.unsupportedReason
+          ? `<p class="document-warning">${courseDocument.unsupportedReason.message}</p>`
           : ""
       }
       ${
-        document.processingError
-          ? `<p class="document-warning">${document.processingError}</p>`
+        courseDocument.processingError
+          ? `<p class="document-warning">${courseDocument.processingError}</p>`
           : ""
       }
       ${
-        document.excerpt
-          ? `<pre class="document-excerpt">${document.excerpt}</pre>`
+        courseDocument.excerpt
+          ? `<pre class="document-excerpt">${courseDocument.excerpt}</pre>`
           : ""
       }
     `;

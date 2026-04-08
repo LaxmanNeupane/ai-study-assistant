@@ -14,9 +14,7 @@ const contentTypes = {
 };
 
 const safeResolve = (requestPath) => {
-  const normalizedPath = normalize(
-    decodeURIComponent(requestPath === "/" ? "/apps/web/index.html" : requestPath)
-  ).replace(/^([/\\])+/, "");
+  const normalizedPath = normalize(decodeURIComponent(requestPath)).replace(/^([/\\])+/, "");
   const absolutePath = join(rootDir, normalizedPath);
 
   if (!absolutePath.startsWith(rootDir)) {
@@ -26,18 +24,32 @@ const safeResolve = (requestPath) => {
   return absolutePath;
 };
 
-createServer((request, response) => {
-  const absolutePath = safeResolve(new URL(request.url, `http://${request.headers.host}`).pathname);
+const resolveRequestPath = (requestPath) => {
+  const basePath = safeResolve(requestPath);
 
-  if (!absolutePath || !existsSync(absolutePath)) {
-    response.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
-    response.end("Not found");
-    return;
+  if (!basePath) {
+    return null;
   }
 
-  if (statSync(absolutePath).isDirectory()) {
-    response.writeHead(403, { "content-type": "text/plain; charset=utf-8" });
-    response.end("Directory listing is disabled.");
+  if (!existsSync(basePath)) {
+    return null;
+  }
+
+  if (statSync(basePath).isDirectory()) {
+    const indexPath = join(basePath, "index.html");
+    return existsSync(indexPath) ? indexPath : null;
+  }
+
+  return basePath;
+};
+
+createServer((request, response) => {
+  const requestPath = new URL(request.url, `http://${request.headers.host}`).pathname;
+  const absolutePath = resolveRequestPath(requestPath);
+
+  if (!absolutePath) {
+    response.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
+    response.end("Not found");
     return;
   }
 

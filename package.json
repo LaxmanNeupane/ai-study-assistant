@@ -13,6 +13,10 @@
     "dev": "node apps/web/server.js",
     "build": "echo \"No build step yet for the initial app shell\"",
     "test": "node packages/domain/src/courseWorkspace.test.js && node packages/ingestion/src/pdfIngestion.test.js && node packages/course-store/src/courseStore.test.js && node packages/notes/src/studyNotes.test.js && node packages/qa/src/groundedQa.test.js && node tests/e2e/studyFlow.test.js",
+    "test:ui": "playwright test",
     "vercel-build": "node scripts/vercel-build.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
   }
 }

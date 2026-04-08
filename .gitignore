@@ -9,6 +9,8 @@ build/
 .next/
 coverage/
 public/
+playwright-report/
+test-results/
 
 # Local environment
 .env
