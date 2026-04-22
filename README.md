@@ -132,3 +132,17 @@ PDF → ETL → Chunking → Storage → Retrieval → Notes/Q&A → UI
 - PDF parsing failure
 - Weak chunking
 - Retrieval mismatch
+## Improvement Based on Evaluation
+
+### Problem
+- System previously gave unclear responses when data was missing
+
+### Improvement
+- Added insufficiency handling
+- System now returns:
+  - reason codes
+  - clear messages
+
+### Result
+- More reliable answers
+- Better user trust

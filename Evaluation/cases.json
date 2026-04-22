@@ -1,0 +1,7 @@
+[
+  {"case": 1, "question": "What is a neural network?", "expected": "definition"},
+  {"case": 2, "question": "Explain layers in neural networks", "expected": "layers explanation"},
+  {"case": 3, "question": "Summarize the topic", "expected": "summary"},
+  {"case": 4, "question": "What are key concepts?", "expected": "concepts"},
+  {"case": 5, "question": "Explain activation functions", "expected": "explanation"}
+]
