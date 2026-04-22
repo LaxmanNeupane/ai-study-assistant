@@ -90,3 +90,45 @@ npm start
 7. Demo Link 
 https://ai-study-assistant-weld-eight.vercel.app
 https://ai-study-assistant-git-main-laxmanneupanes-projects.vercel.app
+
+## Section added for assignment 6
+## Architecture Classification
+
+This system is a **retrieval-first architecture (RAG-like)**.
+
+### Why
+- Processes PDFs into structured chunks
+- Retrieves relevant content before answering
+- Uses only course-specific data
+
+### Alternative
+A prompt-first approach could send full documents directly to the model, but it would:
+- exceed context limits
+- be inefficient for multiple PDFs
+
+### Tradeoffs
+- Better scalability and performance
+- More complex chunking and retrieval
+
+### Not Implemented
+Advanced vector-based retrieval was not implemented.  
+This could improve semantic matching but adds cost and complexity.
+## 🔄 Pipeline and Data Flow
+
+The system follows this pipeline:
+
+PDF → ETL → Chunking → Storage → Retrieval → Notes/Q&A → UI
+
+### Stages:
+1. PDF ingestion
+2. Text extraction and cleaning
+3. Chunking into smaller sections
+4. Storing processed content
+5. Retrieving relevant chunks
+6. Generating notes and answers
+7. Displaying results in UI
+
+### Failure Points:
+- PDF parsing failure
+- Weak chunking
+- Retrieval mismatch
